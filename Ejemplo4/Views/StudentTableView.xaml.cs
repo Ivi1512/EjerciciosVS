@@ -23,6 +23,36 @@ namespace Ejemplo4.Views
         public StudentTableView()
         {
             InitializeComponent();
+            btnGuardar.Visibility = Visibility.Collapsed;
+            btnCancelar.Visibility = Visibility.Collapsed;
+            btnEditar.IsEnabled = false;
+        }
+
+        private void studentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnEditar.IsEnabled = true;
+            
+        }
+
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            btnEditar.Visibility = Visibility.Collapsed;
+            btnGuardar.Visibility = Visibility.Visible;
+            btnCancelar.Visibility = Visibility.Visible;
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            btnEditar.Visibility = Visibility.Visible;
+            btnGuardar.Visibility = Visibility.Collapsed;
+            btnCancelar.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            btnEditar.Visibility = Visibility.Visible;
+            btnGuardar.Visibility = Visibility.Collapsed;
+            btnCancelar.Visibility = Visibility.Collapsed;
         }
     }
 }

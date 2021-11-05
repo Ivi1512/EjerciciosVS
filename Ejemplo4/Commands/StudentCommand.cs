@@ -34,11 +34,33 @@ namespace Ejemplo4.Commands
                 {
                     studentTableViewModel.ListaEstudiantes = StudentDBHandler.GetStudents();
                 }
+                else if (accion.Equals("editarHabilitado"))
+                {
+                    studentTableViewModel.EditarActivado = true;
+                    studentTableViewModel.CambiarEstudiante = false;
+                }
+                else if (accion.Equals("cancelarEditar"))
+                {
+                    studentTableViewModel.EditarActivado = false;
+                    studentTableViewModel.CurrentStudent = (StudentModel) studentTableViewModel.SelectedStudent.Clone();
+                    studentTableViewModel.CambiarEstudiante = true;
+                }
+                else if(accion.Equals("guardar"))
+                {
+                    bool okGuardar = StudentDBHandler.EditStudent(studentTableViewModel.CurrentStudent);
+                    if(okGuardar)
+                    {
+                        studentTableViewModel.EditarActivado = false;
+                        studentTableViewModel.SelectedStudent = (StudentModel)studentTableViewModel.CurrentStudent.Clone();
+                        studentTableViewModel.CambiarEstudiante = true;
+                    }
+                }
             }
             else
             {
                 StudentModel student = (StudentModel) parameter;
                 studentTableViewModel.CurrentStudent = (StudentModel) student.Clone();
+                studentTableViewModel.SelectedStudent = (StudentModel)student.Clone();
             }
 
             

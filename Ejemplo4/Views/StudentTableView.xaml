@@ -23,7 +23,7 @@
         <!--Este StackPanel es la tabla-->
         
         <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
-            <ListView x:Name="studentListView" ItemsSource="{Binding ListaEstudiantes}">
+            <ListView x:Name="studentListView" IsEnabled="{Binding CambiarEstudiante}" ItemsSource="{Binding ListaEstudiantes}" MaxHeight="600" SelectionChanged="studentListView_SelectionChanged">
 
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
@@ -57,29 +57,34 @@
                             VerticalAlignment="Center" Width="200"
                             FontSize="16"
                             materialDesign:TextFieldAssist.HasClearButton="True"
-                            Text="{Binding CurrentStudent._id, UpdateSourceTrigger=PropertyChanged}"/>
+                            Text="{Binding CurrentStudent._id, UpdateSourceTrigger=PropertyChanged}"
+                            IsEnabled="{Binding EditarActivado}"/>
 
                     <TextBox materialDesign:HintAssist.Hint="Nombre:" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                             VerticalAlignment="Center" Width="200"
                             FontSize="16"
                             materialDesign:TextFieldAssist.HasClearButton="True"
-                            Text="{Binding CurrentStudent.Nombre, UpdateSourceTrigger=PropertyChanged}"/>
+                            Text="{Binding CurrentStudent.Nombre, UpdateSourceTrigger=PropertyChanged}"
+                            IsEnabled="{Binding EditarActivado}"/>
 
                     <DatePicker Margin="10" Width="200" HorizontalContentAlignment="Left" 
                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                 materialDesign:HintAssist.Hint="Fecha de Nacimiento:"
                                 FontSize="16"
-                                SelectedDate="{Binding CurrentStudent.Fecha, StringFormat=dd/MM/yyyy}"/>
+                                SelectedDate="{Binding CurrentStudent.Fecha, StringFormat=dd/MM/yyyy}"
+                                IsEnabled="{Binding EditarActivado}"/>
 
-                    <ComboBox Width="200" materialDesign:HintAssist.Hint="Curso:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Text="{Binding CurrentStudent.Curso}" >
+                    <ComboBox Width="200" materialDesign:HintAssist.Hint="Curso:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Text="{Binding CurrentStudent.Curso}" IsEnabled="{Binding EditarActivado}" >
                         <ComboBoxItem Content="Primero"/>
                         <ComboBoxItem Content="Segundo"/>
                         <ComboBoxItem Content="Tercero"/>
                     </ComboBox>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="30">
-                        <Button Content="Aceptar" Width="120" Margin="5" Command="{Binding StudentCommand}" CommandParameter="nuevo"/>
-                        <Button Content="Cancelar" Width="120" Margin="5"/>
+                        <Button x:Name="btnEditar" Content="Editar" Width="120" Margin="5" Command="{Binding StudentCommand}" CommandParameter="editarHabilitado" Click="btnEditar_Click" />
+
+                        <Button x:Name="btnGuardar" Content="Guardar" Width="120" Margin="5" Command="{Binding StudentCommand}" CommandParameter="guardar" Click="btnGuardar_Click"/>
+                        <Button x:Name="btnCancelar" Content="Cancelar" Width="120" Margin="5" Click="btnCancelar_Click" Command="{Binding StudentCommand}" CommandParameter="cancelarEditar"/>
                     </StackPanel>
                 </StackPanel>
 

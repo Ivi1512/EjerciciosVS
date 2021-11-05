@@ -15,7 +15,7 @@ namespace Ejemplo4.Services
         {
             studentList = new ObservableCollection<StudentModel>();
 
-            for(int i = 0; i < 20; i++)
+            for(int i = 0; i < 40; i++)
             {
                 StudentModel student = new StudentModel();
                 student._id = i.ToString();
@@ -27,6 +27,23 @@ namespace Ejemplo4.Services
             }
 
             return studentList;
+        }
+
+        public static bool EditStudent(StudentModel student)
+        {
+            bool okEdit = false;
+            foreach(StudentModel s in studentList)
+            {
+                if(s._id.Equals(student._id))
+                {
+                    s.Nombre = student.Nombre;
+                    s.Fecha = student.Fecha;
+                    s.Curso = student.Curso;
+                    okEdit = true;
+                }
+            }
+
+            return okEdit;
         }
     }
 }
