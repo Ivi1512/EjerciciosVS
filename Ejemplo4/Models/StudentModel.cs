@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ejemplo4.Models
 {
-    public class StudentModel : INotifyPropertyChanged
+    public class StudentModel : INotifyPropertyChanged, ICloneable
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -15,7 +15,11 @@ namespace Ejemplo4.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-            
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
 
         public StudentModel()
         {

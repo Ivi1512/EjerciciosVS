@@ -1,4 +1,6 @@
-﻿using Ejemplo4.ViewModels;
+﻿using Ejemplo4.Models;
+using Ejemplo4.Services;
+using Ejemplo4.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +21,33 @@ namespace Ejemplo4.Commands
 
         public void Execute(object parameter)
         {
-            string accion = parameter.ToString();
-
-            if (accion.Equals("nuevo"))
+            if(parameter is string)
             {
-                studentViewModel.ListaEstudiantes.Add(studentViewModel.CurrentStudent);
+                string accion = parameter.ToString();
+
+                if (accion.Equals("nuevo"))
+                {
+                    studentViewModel.ListaEstudiantes.Add(studentViewModel.CurrentStudent);
+                    studentViewModel.CurrentStudent = new StudentModel();
+                }
+                else if (accion.Equals("cargarLista"))
+                {
+                    studentTableViewModel.ListaEstudiantes = StudentDBHandler.GetStudents();
+                }
             }
+            else
+            {
+                StudentModel student = (StudentModel) parameter;
+                studentTableViewModel.CurrentStudent = (StudentModel) student.Clone();
+            }
+
+            
+        }
+
+        private StudentTableViewModel studentTableViewModel;
+        public StudentCommand(StudentTableViewModel studentTableViewModel)
+        {
+            this.studentTableViewModel = studentTableViewModel;
         }
 
         private StudentViewModel studentViewModel;

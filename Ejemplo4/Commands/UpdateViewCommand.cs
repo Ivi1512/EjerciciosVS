@@ -15,9 +15,7 @@ namespace Ejemplo4.Commands
 
         public UpdateViewCommand(MainViewModel viewModel)
         {
-            this.viewModel = viewModel;
-            this.viewModel.SelectedViewModel = new StudentViewModel();
-             
+            this.viewModel = viewModel;             
         }
 
         public bool CanExecute(object parameter)
@@ -39,6 +37,10 @@ namespace Ejemplo4.Commands
             else if(parameter.ToString().Equals("student"))
             {
                 viewModel.SelectedViewModel = new StudentViewModel();
+            }
+            else if(parameter.ToString().Equals("tabla"))
+            {
+                viewModel.SelectedViewModel = new StudentTableViewModel();
             }
         }
     }
