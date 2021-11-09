@@ -74,6 +74,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\StudentCommand.cs" />
     <Compile Include="Commands\UpdateViewCommand.cs" />
+    <Compile Include="Models\NotasModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Services\StudentDBHandler.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />

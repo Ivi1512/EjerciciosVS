@@ -40,6 +40,17 @@ namespace Ejemplo4.ViewModels
             }
         }
 
+        private bool editarCalificaciones { set; get; }
+
+        public bool EditarCalificaciones
+        {
+            get { return editarCalificaciones; }
+            set
+            {
+                editarCalificaciones = value;
+                OnPropertyChanged(nameof(EditarCalificaciones));
+            }
+        }
 
         private bool cambiarEstudiante { set; get; }
 

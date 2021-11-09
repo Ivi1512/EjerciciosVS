@@ -14,14 +14,22 @@ namespace Ejemplo4.Services
         public static ObservableCollection<StudentModel> GetStudents()
         {
             studentList = new ObservableCollection<StudentModel>();
+            var random = new Random();
 
-            for(int i = 0; i < 40; i++)
+            for (int i = 0; i < 40; i++)
             {
                 StudentModel student = new StudentModel();
                 student._id = i.ToString();
                 student.Nombre = "Estudiante " + i.ToString();
                 student.Curso = "Primero";
                 student.Fecha = DateTime.Today;
+
+                student.Notas.DI = random.Next(1,10).ToString();
+                student.Notas.PSP = random.Next(1, 10).ToString();
+                student.Notas.AD = random.Next(1, 10).ToString();
+                student.Notas.PMDM = random.Next(1, 10).ToString();
+                student.Notas.EIE = random.Next(1, 10).ToString();
+                student.Notas.SGE = random.Next(1, 10).ToString();
 
                 studentList.Add(student);
             }

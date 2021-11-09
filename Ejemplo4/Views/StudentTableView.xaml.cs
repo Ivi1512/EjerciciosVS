@@ -26,11 +26,15 @@ namespace Ejemplo4.Views
             btnGuardar.Visibility = Visibility.Collapsed;
             btnCancelar.Visibility = Visibility.Collapsed;
             btnEditar.IsEnabled = false;
+            stackCalificaciones.Visibility = Visibility.Collapsed;
+            stackDatosEstudiante.Visibility = Visibility.Collapsed;
         }
 
         private void studentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             btnEditar.IsEnabled = true;
+            stackCalificaciones.Visibility = Visibility.Visible;
+            stackDatosEstudiante.Visibility = Visibility.Visible;
             
         }
 

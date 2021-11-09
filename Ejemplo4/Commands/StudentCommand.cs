@@ -39,6 +39,10 @@ namespace Ejemplo4.Commands
                     studentTableViewModel.EditarActivado = true;
                     studentTableViewModel.CambiarEstudiante = false;
                 }
+                else if(accion.Equals("EditarCalificaciones"))
+                {
+                    studentTableViewModel.EditarCalificaciones = false;
+                }
                 else if (accion.Equals("cancelarEditar"))
                 {
                     studentTableViewModel.EditarActivado = false;

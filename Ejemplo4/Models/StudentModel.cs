@@ -21,9 +21,17 @@ namespace Ejemplo4.Models
             return MemberwiseClone();
         }
 
-        public StudentModel()
+
+        private NotasModel notas { set; get; }
+
+        public NotasModel Notas
         {
-            Fecha = DateTime.Today;
+            get { return notas; }
+            set
+            {
+                notas = value;
+                OnPropertyChanged(nameof(Notas));
+            }
         }
 
         private string id { set; get; }
@@ -76,6 +84,12 @@ namespace Ejemplo4.Models
         }
 
 
+        public StudentModel()
+        {
+            Fecha = DateTime.Today;
+            Notas = new NotasModel();
+
+        }
 
     }
 }
