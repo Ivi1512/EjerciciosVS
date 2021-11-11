@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,45 +19,165 @@ namespace Ejemplo4.Views
     /// <summary>
     /// Lógica de interacción para StudentTableView.xaml
     /// </summary>
-    public partial class StudentTableView : UserControl
+    public partial class StudentTableView : UserControl, INotifyPropertyChanged
     {
-        public StudentTableView()
+        
+
+        protected void OnPropertyChanged(string propertyName = null)
         {
-            InitializeComponent();
-            btnGuardar.Visibility = Visibility.Collapsed;
-            btnCancelar.Visibility = Visibility.Collapsed;
-            btnEditar.IsEnabled = false;
-            stackCalificaciones.Visibility = Visibility.Collapsed;
-            stackDatosEstudiante.Visibility = Visibility.Collapsed;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+        private bool editarActivado { set; get; }
+
+        public bool EditarActivado
+        {
+            get { return editarActivado; }
+            set
+            {
+                editarActivado = value;
+                OnPropertyChanged(nameof(EditarActivado));
+            }
+        }
+
+
+        private bool editarNotasActivado { set; get; }
+
+        public bool EditarNotasActivado
+        {
+            get { return editarNotasActivado; }
+            set
+            {
+                editarNotasActivado = value;
+                OnPropertyChanged(nameof(EditarNotasActivado));
+            }
+        }
+
+
+        private bool cambiarEstudiante { set; get; }
+
+        public bool CambiarEstudiante
+        {
+            get { return cambiarEstudiante; }
+            set
+            {
+                cambiarEstudiante = value;
+                OnPropertyChanged(nameof(CambiarEstudiante));
+            }
+        }
+
 
         private void studentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            btnEditar.IsEnabled = true;
-            stackCalificaciones.Visibility = Visibility.Visible;
-            stackDatosEstudiante.Visibility = Visibility.Visible;
+            E01MostrarEstudiante();
             
+
+
         }
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            btnEditar.Visibility = Visibility.Collapsed;
-            btnGuardar.Visibility = Visibility.Visible;
-            btnCancelar.Visibility = Visibility.Visible;
+            E02EditarEstudiante();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            btnEditar.Visibility = Visibility.Visible;
-            btnGuardar.Visibility = Visibility.Collapsed;
-            btnCancelar.Visibility = Visibility.Collapsed;
+            E01MostrarEstudiante();
+            EditarActivado = false;
+
         }
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            btnEditar.Visibility = Visibility.Visible;
+           
+        }
+
+        private void btCalificaciones_Click(object sender, RoutedEventArgs e)
+        {
+            E03MostrarNotas();
+
+        }
+
+        private void btEstudiantes_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnGuardarNota_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEditarNota_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCancelarNota_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+
+        public void E00EstadoInicial()
+        {
+            stackDatosEstudiante.Visibility = Visibility.Collapsed;
+            stackCalificaciones.Visibility = Visibility.Collapsed;
+            btCalificaciones.Visibility = Visibility.Collapsed;
+            btEstudiantes.Visibility = Visibility.Collapsed;
+
+            //Campos habilitados o deshabilitados
+            EditarActivado = false;
+        }
+
+        public void E01MostrarEstudiante()
+        {
+            stackDatosEstudiante.Visibility = Visibility.Visible;
+            stackCalificaciones.Visibility = Visibility.Collapsed;
+            btCalificaciones.Visibility = Visibility.Visible;
+            btEstudiantes.Visibility = Visibility.Collapsed;
+
             btnGuardar.Visibility = Visibility.Collapsed;
             btnCancelar.Visibility = Visibility.Collapsed;
+            btnEditar.Visibility = Visibility.Visible;
+        }
+
+        public void E02EditarEstudiante()
+        {
+            btnGuardar.Visibility = Visibility.Visible;
+            btnCancelar.Visibility = Visibility.Visible;
+            btnEditar.Visibility = Visibility.Collapsed;
+
+
+            EditarActivado = true;
+        }
+
+        public void E03MostrarNotas()
+        {
+            stackDatosEstudiante.Visibility = Visibility.Collapsed;
+            stackCalificaciones.Visibility = Visibility.Visible;
+            btCalificaciones.Visibility = Visibility.Collapsed;
+            btEstudiantes.Visibility = Visibility.Visible;
+
+            btnGuardarNota.Visibility = Visibility.Collapsed;
+            btnCancelarNota.Visibility = Visibility.Collapsed;
+            btnEditarNota.Visibility = Visibility.Visible;
+        }
+
+
+        public StudentTableView()
+        {
+            InitializeComponent();
+            stackCalificaciones.DataContext = this;
+            stackDatosEstudiante.DataContext = this;
+
+            E00EstadoInicial();
+            
         }
     }
 }

@@ -20,13 +20,20 @@
             <ColumnDefinition Width="450"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="250"/>
         </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="btCalificaciones" Content="MOSTRAR CALIFICACIONES" Width="210" Margin="5" Click="btCalificaciones_Click"/>
+            <Button x:Name="btEstudiantes" Content="MOSTRAR ESTUDIANTE" Width="210" Margin="5" Click="btEstudiantes_Click"/>
+        </StackPanel>
         
         <!--Este StackPanel es la tabla-->
         
-        <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Grid.RowSpan="2">
+        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Grid.RowSpan="2">
             <ListView x:Name="studentListView" IsEnabled="{Binding CambiarEstudiante}" ItemsSource="{Binding ListaEstudiantes}" MaxHeight="600" SelectionChanged="studentListView_SelectionChanged">
 
                 <i:Interaction.Triggers>
@@ -50,7 +57,7 @@
         
         <!--Este StackPanel es el Formulario-->
         
-        <StackPanel Grid.Column="1" Background="LightGreen" x:Name="stackDatosEstudiante">
+        <StackPanel Grid.Row="2" Grid.Column="1" Background="LightGreen" x:Name="stackDatosEstudiante" Visibility="Collapsed">
 
             <materialDesign:Card Padding="32" Margin="16">
                 <StackPanel>
@@ -97,7 +104,7 @@
             
         </StackPanel>
 
-        <StackPanel  Grid.Column="1" Grid.Row="1" Background="LightCyan" x:Name="stackCalificaciones">
+        <StackPanel Grid.Row="2" Grid.Column="1" Background="LightCyan" x:Name="stackCalificaciones" Visibility="Visible">
             <materialDesign:Card Padding="5" Margin="10">
                 <StackPanel>
                     <TextBlock Text="Calificaciones" HorizontalAlignment="Center" Margin="15" FontSize="24" FontWeight="DemiBold"/>
@@ -117,24 +124,29 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Text="Desarrollo de Interfaces:" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Bottom"/>
-                        <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarCalificaciones}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.DI}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="46" VerticalAlignment="Top" />
+                        <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarNotasActivado}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.DI}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="46" VerticalAlignment="Top" />
 
                         <TextBlock Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" TextAlignment="Right" Text="Programación de Servicios y Procesos:" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Bottom"/>
-                        <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarCalificaciones}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.PSP}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                        <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarNotasActivado}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.PSP}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
 
                         <TextBlock Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" TextAlignment="Right" Text="Programación Multimedia y Dispositivos Móviles:" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Bottom"/>
-                        <ComboBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarCalificaciones}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.PMDM}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                        <ComboBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarNotasActivado}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.PMDM}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
 
                         <TextBlock Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" TextAlignment="Right" Text="Sistemas de Gestión empresarial:" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Bottom"/>
-                        <ComboBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarCalificaciones}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.SGE}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                        <ComboBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarNotasActivado}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.SGE}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
 
                         <TextBlock Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" TextAlignment="Right" Text="Acceso a Datos:" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Bottom"/>
-                        <ComboBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarCalificaciones}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.AD}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                        <ComboBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarNotasActivado}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.AD}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
 
                         <TextBlock Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" TextAlignment="Right" Text="Empresa e Iniciativa Emprendedora:" HorizontalAlignment="Right" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Bottom"/>
-                        <ComboBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarCalificaciones}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.EIE}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                        <ComboBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding EditarNotasActivado}" ItemsSource="{Binding listaNumeros}" Text="{Binding CurrentStudent.Notas.EIE}" Width="60" Margin="25,0,0,0" materialDesign:HintAssist.Hint="Nota:" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
 
                     </Grid>
+                    <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
+                    <Button x:Name="btnEditarNota" Content="Editar" Width="120" Margin="5" Command="{Binding StudentCommand}" CommandParameter="editarHabilitado" Click="btnEditarNota_Click" />
+                    <Button x:Name="btnGuardarNota" Content="Guardar" Width="120" Margin="5" Command="{Binding StudentCommand}" CommandParameter="guardar" Click="btnGuardarNota_Click"/>
+                        <Button x:Name="btnCancelarNota" Content="Cancelar" Width="120" Margin="5" Command="{Binding StudentCommand}" CommandParameter="cancelar" Click="btnCancelarNota_Click"/>
+                    </StackPanel>
                 </StackPanel>
             </materialDesign:Card>
             

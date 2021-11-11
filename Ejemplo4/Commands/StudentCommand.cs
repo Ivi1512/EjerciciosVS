@@ -27,8 +27,8 @@ namespace Ejemplo4.Commands
 
                 if (accion.Equals("nuevo"))
                 {
-                    studentViewModel.ListaEstudiantes.Add(studentViewModel.CurrentStudent);
-                    studentViewModel.CurrentStudent = new StudentModel();
+                    //studentViewModel.ListaEstudiantes.Add(studentViewModel.CurrentStudent);
+                    //studentViewModel.CurrentStudent = new StudentModel();
                 }
                 else if (accion.Equals("cargarLista"))
                 {
@@ -36,27 +36,27 @@ namespace Ejemplo4.Commands
                 }
                 else if (accion.Equals("editarHabilitado"))
                 {
-                    studentTableViewModel.EditarActivado = true;
-                    studentTableViewModel.CambiarEstudiante = false;
+                    //studentTableViewModel.EditarActivado = true;
+                    //studentTableViewModel.CambiarEstudiante = false;
                 }
                 else if(accion.Equals("EditarCalificaciones"))
                 {
-                    studentTableViewModel.EditarCalificaciones = false;
+                    //studentTableViewModel.EditarCalificaciones = false;
                 }
                 else if (accion.Equals("cancelarEditar"))
                 {
-                    studentTableViewModel.EditarActivado = false;
-                    studentTableViewModel.CurrentStudent = (StudentModel) studentTableViewModel.SelectedStudent.Clone();
-                    studentTableViewModel.CambiarEstudiante = true;
+                    //studentTableViewModel.EditarActivado = false;
+                    //studentTableViewModel.CurrentStudent = (StudentModel) studentTableViewModel.SelectedStudent.Clone();
+                    //studentTableViewModel.CambiarEstudiante = true;
                 }
                 else if(accion.Equals("guardar"))
                 {
                     bool okGuardar = StudentDBHandler.EditStudent(studentTableViewModel.CurrentStudent);
                     if(okGuardar)
                     {
-                        studentTableViewModel.EditarActivado = false;
-                        studentTableViewModel.SelectedStudent = (StudentModel)studentTableViewModel.CurrentStudent.Clone();
-                        studentTableViewModel.CambiarEstudiante = true;
+                        //studentTableViewModel.EditarActivado = false;
+                        //studentTableViewModel.SelectedStudent = (StudentModel)studentTableViewModel.CurrentStudent.Clone();
+                        //studentTableViewModel.CambiarEstudiante = true;
                     }
                 }
             }

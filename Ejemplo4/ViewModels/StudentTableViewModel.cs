@@ -28,17 +28,7 @@ namespace Ejemplo4.ViewModels
             }
         }
 
-        private bool editarActivado { set; get; }
-
-        public bool EditarActivado
-        {
-            get { return editarActivado; }
-            set
-            {
-                editarActivado = value;
-                OnPropertyChanged(nameof(EditarActivado));
-            }
-        }
+        
 
         private bool editarCalificaciones { set; get; }
 
@@ -52,17 +42,7 @@ namespace Ejemplo4.ViewModels
             }
         }
 
-        private bool cambiarEstudiante { set; get; }
-
-        public bool CambiarEstudiante
-        {
-            get { return cambiarEstudiante; }
-            set
-            {
-                cambiarEstudiante = value;
-                OnPropertyChanged(nameof(CambiarEstudiante));
-            }
-        }
+        
 
 
         private StudentModel currentStudent;
@@ -95,8 +75,8 @@ namespace Ejemplo4.ViewModels
             currentStudent = new StudentModel();
             StudentCommand = new StudentCommand(this);
             listaEstudiantes = new ObservableCollection<StudentModel>();
-            EditarActivado = false;
-            CambiarEstudiante = true;
+            //EditarActivado = false;
+            //CambiarEstudiante = true;
         }
     }
 }
