@@ -1,4 +1,5 @@
 ﻿using Ejemplo4.Commands;
+using Ejemplo4.Commands.StudentCommands;
 using Ejemplo4.Models;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace Ejemplo4.ViewModels
         private ObservableCollection<StudentModel> listaEstudiantes;
 
         public ICommand StudentCommand { set; get; }
+
+        public ICommand EditarNotasCommand { set; get; }
+
+        public ICommand GuardarEstudianteCommand { set; get; }
 
         public ObservableCollection<StudentModel> ListaEstudiantes
         {
@@ -57,7 +62,6 @@ namespace Ejemplo4.ViewModels
         }
 
         private StudentModel selectedStudent { set; get; }
-
         public StudentModel SelectedStudent
         {
             get { return selectedStudent; }
@@ -68,15 +72,27 @@ namespace Ejemplo4.ViewModels
             }
         }
 
+        private string txWarning { set; get; }
+        public string TXWarning
+        {
+            get { return txWarning; }
+            set
+            {
+                txWarning = value;
+                OnPropertyChanged(nameof(TXWarning));
+            }
+        }
+
 
         public StudentTableViewModel()
         {
             listaNumeros = new ObservableCollection<string>() { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
             currentStudent = new StudentModel();
             StudentCommand = new StudentCommand(this);
+            EditarNotasCommand = new EditarNotasCommand(this);
+            GuardarEstudianteCommand = new GuardarEstudianteCommand(this);
             listaEstudiantes = new ObservableCollection<StudentModel>();
-            //EditarActivado = false;
-            //CambiarEstudiante = true;
+
         }
     }
 }

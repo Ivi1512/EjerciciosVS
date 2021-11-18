@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace Ejemplo4.Models
 {
-    public class NotasModel : INotifyPropertyChanged
+    public class NotasModel : INotifyPropertyChanged, ICloneable
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
 
         private string di { set; get; }

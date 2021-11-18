@@ -73,6 +73,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\StudentCommand.cs" />
+    <Compile Include="Commands\StudentCommands\EditarNotasCommand.cs" />
+    <Compile Include="Commands\StudentCommands\GuardarEstudianteCommand.cs" />
     <Compile Include="Commands\UpdateViewCommand.cs" />
     <Compile Include="Models\NotasModel.cs" />
     <Compile Include="Models\StudentModel.cs" />

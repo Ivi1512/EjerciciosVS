@@ -37,9 +37,29 @@ namespace Ejemplo4.Services
             return studentList;
         }
 
-        public static bool EditStudent(StudentModel student)
+        public static bool EditNotas(StudentModel student)
         {
             bool okEdit = false;
+            foreach (StudentModel s in studentList)
+            {
+                if (s._id.Equals(student._id))
+                {
+                    s.Notas.DI = student.Notas.DI;
+                    s.Notas.PSP = student.Notas.PSP;
+                    s.Notas.AD = student.Notas.AD;
+                    s.Notas.PMDM = student.Notas.PMDM;
+                    s.Notas.EIE = student.Notas.EIE;
+                    s.Notas.SGE = student.Notas.SGE;
+                    okEdit = true;
+                }
+            }
+
+            return okEdit;
+        }
+
+        public static bool EditStudent(StudentModel student)
+        {
+            bool okGuardar = false;
             foreach(StudentModel s in studentList)
             {
                 if(s._id.Equals(student._id))
@@ -47,11 +67,12 @@ namespace Ejemplo4.Services
                     s.Nombre = student.Nombre;
                     s.Fecha = student.Fecha;
                     s.Curso = student.Curso;
-                    okEdit = true;
+                    okGuardar = true;
                 }
             }
 
-            return okEdit;
+            return okGuardar;
         }
+
     }
 }

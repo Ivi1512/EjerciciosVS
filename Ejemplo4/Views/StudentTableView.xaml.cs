@@ -113,12 +113,13 @@ namespace Ejemplo4.Views
 
         private void btnEditarNota_Click(object sender, RoutedEventArgs e)
         {
-
+            E04EditarNotas();
         }
+
 
         private void btnCancelarNota_Click(object sender, RoutedEventArgs e)
         {
-
+            E03MostrarNotas();
         }
 
 
@@ -133,6 +134,7 @@ namespace Ejemplo4.Views
 
             //Campos habilitados o deshabilitados
             EditarActivado = false;
+            CambiarEstudiante = true;
         }
 
         public void E01MostrarEstudiante()
@@ -145,6 +147,14 @@ namespace Ejemplo4.Views
             btnGuardar.Visibility = Visibility.Collapsed;
             btnCancelar.Visibility = Visibility.Collapsed;
             btnEditar.Visibility = Visibility.Visible;
+
+            btCalificaciones.IsEnabled = true;
+
+            EditarActivado = false;
+
+            CambiarEstudiante = true;
+
+            txtWarning.Visibility = Visibility.Collapsed;
         }
 
         public void E02EditarEstudiante()
@@ -153,8 +163,11 @@ namespace Ejemplo4.Views
             btnCancelar.Visibility = Visibility.Visible;
             btnEditar.Visibility = Visibility.Collapsed;
 
+            btCalificaciones.IsEnabled = false;
 
             EditarActivado = true;
+
+            CambiarEstudiante = false;
         }
 
         public void E03MostrarNotas()
@@ -167,14 +180,33 @@ namespace Ejemplo4.Views
             btnGuardarNota.Visibility = Visibility.Collapsed;
             btnCancelarNota.Visibility = Visibility.Collapsed;
             btnEditarNota.Visibility = Visibility.Visible;
+
+            EditarNotasActivado = false;
+
+            btEstudiantes.IsEnabled = true;
+
+            CambiarEstudiante = true;
         }
 
+        public void E04EditarNotas()
+        {
+            btnGuardarNota.Visibility = Visibility.Visible;
+            btnCancelarNota.Visibility = Visibility.Visible;
+            btnEditarNota.Visibility = Visibility.Collapsed;
+
+            btEstudiantes.IsEnabled = false;
+
+            EditarNotasActivado = true;
+
+            CambiarEstudiante = false;
+
+        }
 
         public StudentTableView()
         {
             InitializeComponent();
-            stackCalificaciones.DataContext = this;
-            stackDatosEstudiante.DataContext = this;
+            //stackCalificaciones.DataContext = this;
+            //stackDatosEstudiante.DataContext = this;
 
             E00EstadoInicial();
             
